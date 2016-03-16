@@ -44,6 +44,7 @@ module Sluice
       Contract String, String, String => FogStorage
       def new_fog_s3_from(region, access_key_id, secret_access_key)
         if access_key_id == 'iam' and secret_access_key == 'iam'
+          puts "s3 iam"   # still getting a 403 Permission Denied on the s3 request so I want to make sure Storage Loader is pulling in the right version of Sluice
           fog = Fog::Storage::AWS.new({:use_iam_profile => true})
         else
           fog = Fog::Storage.new({
